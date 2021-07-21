@@ -21,26 +21,25 @@ function compose_email() {
   document.querySelector('#compose-subject').value = '';
   document.querySelector('#compose-body').value = '';
 
-  // // Fetch mailbox data
-  // fetch(`/emails/${mailbox}`)
-  // .then(response=>response.text())
-  // .then(text=> {
-  //   va
-  // })
+  // Compile composition and POST 
 
-  document.querySelector('#compose_form').onsubmit = function() {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title: 'Mail' })
-    };
-    fetch('emails/1', requestOptions)
-        .then(response => response.json())
-        .then(data => setPostId(data.id));
-  }
-  
+  document.querySelector('#compose-form').onsubmit = function() {
+    var compdata = {
+      'recipients': document.querySelector('#compose-recipients').value,
+      'subject': document.querySelector('#compose-subject').value,
+      'body': document.querySelector('#compose-body').value
+    }
+    fetch(`/emails`, {
+      method: 'POST',
+      headers: {
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(compdata)
+    })
+      .then(response => console.log(response));
 }
-
+}
 function load_mailbox(mailbox) {
   
   // Show the mailbox and hide other views
