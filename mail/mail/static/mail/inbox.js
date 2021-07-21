@@ -32,7 +32,8 @@ function compose_email() {
     fetch('/emails', {
       method: 'POST',
       headers: {'X-CSRFToken': csrftoken}
-      mode: 'same-origin'
+      mode: 'same-origin',
+      body: JSON.stringify(compdata)
     })
     .then(response => response.json())
   });

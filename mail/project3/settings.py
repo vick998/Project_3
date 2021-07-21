@@ -55,8 +55,8 @@ CSRF_USE_SESSIONS = True
 # the following setting is for the csrf token only, not for the CSRF secret, which is the default for django
 CSRF_TOKEN_CARRIER = os.getenv("XSRF_COOKIE")
 CSRF_HEADER_NAME = "X-CSRFToken"
-CSRF_COOKIE_SECURE = SESSION_COOKIE_SECURE
-CSRF_COOKIE_AGE = SESSION_COOKIE_AGE
+# CSRF_COOKIE_SECURE = SESSION_COOKIE_SECURE
+# CSRF_COOKIE_AGE = SESSION_COOKIE_AGE
 CSRF_TOKEN_HTTPONLY = True
 ROOT_URLCONF = 'project3.urls'
 
