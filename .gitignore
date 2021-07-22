@@ -6177,3 +6177,11 @@ djangop3/Scripts/pip3.exe
 djangop3/Scripts/python.exe
 djangop3/Scripts/pythonw.exe
 djangop3/Scripts/sqlformat.exe
+djangop3/Lib/site-packages/pip-21.1.1.dist-info/entry_points.txt
+djangop3/Lib/site-packages/pip-21.1.1.dist-info/INSTALLER
+djangop3/Lib/site-packages/pip-21.1.1.dist-info/LICENSE.txt
+djangop3/Lib/site-packages/pip-21.1.1.dist-info/METADATA
+djangop3/Lib/site-packages/pip-21.1.1.dist-info/RECORD
+djangop3/Lib/site-packages/pip-21.1.1.dist-info/REQUESTED
+djangop3/Lib/site-packages/pip-21.1.1.dist-info/top_level.txt
+djangop3/Lib/site-packages/pip-21.1.1.dist-info/WHEEL
