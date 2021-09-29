@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Submit form
   document.querySelector('#compose-view').addEventListener('submit', submit_form); // can be used with the submit input button, depends on preference - same functionality
+
 });
 
 
@@ -50,8 +51,6 @@ function submit_form() {
   compose_email()
 }
 
-
-
 function load_mailbox(mailbox) {
   
   // Show the mailbox and hide other views
@@ -74,23 +73,63 @@ function load_mailbox(mailbox) {
     if (mailbox === `inbox`) {
       for(let i = 0; i<mailboxdata.length; i++) {
         document.querySelector('#emails-view').innerHTML += `
-        <div id='mail${i}' class='mails'>
+        <div id='mail${i}' class='list-group-item ${mailbox}'>
         <br>
         <h3>${mailboxdata[i]['sender'] + '(' + mailboxdata[i]['timestamp'] + ')'}</h3>
         <br>
         <h3>${mailboxdata[i]['subject']}</h3>
         </div>`
+        // document.querySelector(`#mail${i}`).setAttribute('dataid',`${mailboxdata[i]['id']}`) Potential troublemakers
     }
   } else {
       for(let i = 0; i<mailboxdata.length; i++) {
         document.querySelector('#emails-view').innerHTML += `
-        <div id='mail${i}' class='mails'>
+        <div id='mail${i}' class='list-group-item ${mailbox}'>
         <br>
         <h3>${mailboxdata[i]['recipients'] + '(' + mailboxdata[i]['timestamp'] + ')'}</h3>
         <br>
         <h3>${mailboxdata[i]['subject']}</h3>
+        <p class='modelid'>${mailboxdata[i]['id']}</p>
         </div>`
+        // document.querySelector(`#mail${i}`).setAttribute('dataid',`${mailboxdata[i]['id']}`) Potential troublemakers
+      }
+    }
+    var mails = document.querySelectorAll(`.${mailbox}`)
+    mails.forEach(el => el.addEventListener('click',load_email))
+  }
+
+  function load_email(event) {
+    var idel = event.currentTarget.id;
+    var classel = event.currentTarget.classList;
+    var email_id = event.currentTarget.getAttribute('dataid');
+
+    async function getMailbox(mailbox){ 
+      const response = await fetch(`emails/${mailbox}`);
+      var mailboxdata0 = await response.json(); 
+      load_email0(mailboxdata0)
+    }
+
+    console.log(idel)
+    console.log(classel)
+    console.log(email_id)
+    getMailbox(classel[1])
+
+    function load_email0(mailboxdata) {
+      for(let m = 0; m<mailboxdata.length; m++){
+        // if (email_id === mailboxdata[m].id){ // Troublemaker, async email
+          document.querySelector('#emails-view').innerHTML = ""
+          document.querySelector('#emails-view').innerHTML += `
+          <div>
+          <h3>${mailboxdata[m].subject}</h3>
+          <p>${mailboxdata[m].body}</p>
+          </div>
+          `
+        // }
       }
     }
   }
 }
+
+
+
+

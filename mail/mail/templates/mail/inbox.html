@@ -1,6 +1,10 @@
 {% extends "mail/layout.html" %}
 {% load static %}
 
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'mail/styles.css' %}">
+{% endblock %}
+
 {% block body %}
     <h2>{{ request.user.email }}</h2>
 
@@ -11,7 +15,10 @@
     <a class="btn btn-sm btn-outline-primary" href="{% url 'logout' %}">Log Out</a>
     <hr>
 
+    <div class="list-group">
     <div id="emails-view">
+
+    </div>
     </div>
 
     <div id="compose-view">
