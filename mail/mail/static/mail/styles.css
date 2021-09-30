@@ -1,3 +1,24 @@
+* {
+    font-family: Helvetica;
+}
 textarea {
     min-height: 400px;
+}
+#archbut {
+    text-align: right;
+}
+.list-group-item p {
+    display: inline; 
+}
+.timest {
+    text-align: right;
+    float: right;
+    color: grey;
+}
+.list-group-item {
+    border:  1px solid black;
+    height: 20%;
+}
+.bolded {
+    font-weight: bold;
 }
